@@ -71,3 +71,33 @@ empl_sub = subEmployee("Tadeo","E0004",10,"Marketing","7009")
 empl_sub.calcSalary()
 print(empl_sub.Salary)
 # print(empl_sub)
+
+# ================================
+# Threading Basics: cons - can be unpredictable
+# ================================
+
+import threading
+import numpy as np
+import time
+
+def randNumGen():
+    for a in range(30):
+        # print(np.random.randint(1,1000))
+        print(a)
+        time.sleep(1)
+
+thr2 = threading.Thread(target=randNumGen)
+thr2.daemon=True
+thr2.start()
+
+def greeting():
+    for i in range(10):
+        print('Hello')
+        time.sleep(1)
+
+# randNumGen()
+greeting()
+
+# python is an interpreter language, not a compiler language like C##
+
+# Daemon is a program running in the background
