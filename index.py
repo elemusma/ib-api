@@ -82,12 +82,17 @@ import time
 
 def randNumGen():
     for a in range(30):
-        # print(np.random.randint(1,1000))
-        print(a)
-        time.sleep(1)
+        if event.is_set():
+            break
+        else:
+            print(a)
+            # print(np.random.randint(1,1000))
+            print(a)
+            time.sleep(1)
 
+event = threading.Event()
 thr2 = threading.Thread(target=randNumGen)
-thr2.daemon=True
+# thr2.daemon=True
 thr2.start()
 
 def greeting():
@@ -97,6 +102,8 @@ def greeting():
 
 # randNumGen()
 greeting()
+event.set()
+event.clear()
 
 # python is an interpreter language, not a compiler language like C##
 
